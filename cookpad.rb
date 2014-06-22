@@ -18,7 +18,14 @@ else
   	id += 1
   }
 
-  recipes_map.each_pair {|k, v|
-  	puts "#{k}: #{v}"
-  }
+  if ARGV.empty?
+  	# spec3-5
+    recipes_map.each_pair {|k, v|
+      puts "#{k}: #{v}"
+    }
+  else
+    # spec6-
+    key = ARGV.shift.to_i
+    puts recipes_map[key]
+  end
 end
