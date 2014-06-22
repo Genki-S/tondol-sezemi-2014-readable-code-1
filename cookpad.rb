@@ -61,7 +61,10 @@ else
                    nil
                  end
 
+  is_first_user = true
   user_recipe_data_pairs.each_slice(2) do |user, recipe_data|
+    puts "" unless is_first_user # spacer
+    is_first_user = false
     puts "ユーザー名: #{user.name}"
     recipe_data.recipes.each_with_index {|recipe, id|
       # show all recipes when no id is specified
