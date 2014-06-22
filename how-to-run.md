@@ -47,3 +47,16 @@ spec6
 $ ruby cookpad.rb recipe-data.txt 1
 寿司
 ```
+
+spec7
+----
+
+入力ファイルの書式:
+
+- 各レシピを改行文字区切りで記述する
+- 各レシピには、レシピ名とレシピURLを空白区切りで記述する
+
+```sh
+$ ruby cookpad.rb recipe-data.txt 1
+寿司 http://cookpad.com/recipe/1858524
+```
