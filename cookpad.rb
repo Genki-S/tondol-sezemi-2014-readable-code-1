@@ -8,17 +8,17 @@ if ARGV.size == 0
 else
   # spec3-
   filename = ARGV.shift
-  recipe = File.read(filename)
+  recipes = File.read(filename)
 
   # idとレシピを紐付けたmapを作る
   id = 0
-  recipe_map = {}
-  recipe.each_line {|line|
-  	recipe_map[id] = line
+  recipes_map = {}
+  recipes.each_line {|line|
+  	recipes_map[id] = line
   	id += 1
   }
 
-  recipe_map.each_pair {|k, v|
+  recipes_map.each_pair {|k, v|
   	puts "#{k}: #{v}"
   }
 end
