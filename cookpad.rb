@@ -25,7 +25,11 @@ else
     }
   else
     # spec6-
-    key = ARGV.shift.to_i
-    puts recipes_map[key]
+    key = Integer(ARGV.shift)
+    if recipes_map.has_key?(key)
+      puts recipes_map[key]
+    else
+      raise ArgumentError.new("there is no recipe for given key")
+   	end
   end
 end
