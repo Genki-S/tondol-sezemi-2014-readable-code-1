@@ -32,8 +32,18 @@ spec4
 入力ファイルの書式: 各レシピを改行文字区切りで記述する。
 
 ```sh
-cat recipe-data.txt
+$ cat recipe-data.txt
 カレーライス
 寿司
 焼肉
+```
+
+spec6
+----
+
+入力ファイルはspec4と同様。
+
+```sh
+$ ruby cookpad.rb recipe-data.txt 1
+寿司
 ```
