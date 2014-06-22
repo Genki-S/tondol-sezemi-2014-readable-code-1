@@ -44,7 +44,7 @@ else
 
   if ARGV.empty?
     # spec3-5
-    recipes_data.recipes.each_with_index {|recipe, id|
+    recipe_data.recipes.each_with_index {|recipe, id|
       puts "#{id}: #{recipe.name}"
     }
   else
