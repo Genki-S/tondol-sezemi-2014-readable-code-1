@@ -10,15 +10,19 @@ class User
 end
 
 class Recipe
+  @@recipe_count = 0
+
   def initialize(name)
     @name = name
+    @id = @@recipe_count
+    @@recipe_count += 1
   end
 
   def self.load(str)
     Recipe.new(str)
   end
 
-  attr_reader :name
+  attr_reader :name, :id
 end
 
 class RecipeData
@@ -61,17 +65,16 @@ else
                    nil
                  end
 
-  recipe_count = 0
   is_first_user = true
   user_recipe_data_pairs.each_slice(2) do |user, recipe_data|
     puts "" unless is_first_user # spacer
     is_first_user = false
+
     puts "ユーザー名: #{user.name}"
-    recipe_data.recipes.each.with_index(recipe_count) {|recipe, id|
+    recipe_data.recipes.each {|recipe|
       # show all recipes when no id is specified
-      next if specified_id && id != specified_id
-      puts "#{id}: #{recipe.name}"
+      next if specified_id && recipe.id != specified_id
+      puts "#{recipe.id}: #{recipe.name}"
     }
-    recipe_count += recipe_data.recipes.count
   end
 end
