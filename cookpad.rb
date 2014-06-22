@@ -45,34 +45,28 @@ if ARGV.size == 0
   # 引数が空のときの挙動を保存しておく
   puts "オムライス"
 else
-  # spec3-
-  user_name, filename, recipe_id_str = ARGV
+  user_recipe_data_pairs = []
+  # ARGV: user, file, user, file, ..., recipe_id
+  while ARGV.size >= 2
+    user_name, file_name = ARGV.shift(2)
+    user = User.new(user_name)
+    str = File.read(file_name)
+    recipe_data = RecipeData.load(str)
+    user_recipe_data_pairs += [user, recipe_data]
+  end
 
-  user = User.new(user_name)
-  puts "ユーザー名: #{user.name}"
+  specified_id = unless ARGV.first.nil?
+                   ARGV.first.to_i
+                 else
+                   nil
+                 end
 
-  str = File.read(filename)
-  recipe_data = RecipeData.load(str)
-
-  recipe_id = unless recipe_id_str.nil?
-                recipe_id_str.to_i
-              else
-                nil
-              end
-  if recipe_id.nil?
-    # spec3-5
+  user_recipe_data_pairs.each_slice(2) do |user, recipe_data|
+    puts "ユーザー名: #{user.name}"
     recipe_data.recipes.each_with_index {|recipe, id|
+      # show all recipes when no id is specified
+      next if specified_id && id != specified_id
       puts "#{id}: #{recipe.name}"
     }
-  else
-    # spec6-
-    if recipe_data.has_recipe_for_id?(recipe_id)
-      recipe = recipe_data.recipes[recipe_id]
-      puts "#{recipe_id}: #{recipe.name}"
-    else
-      # 与えられたキーが整数に変換できなかったり，
-      # 対応するレシピが存在しなければ例外を発生させる
-      raise ArgumentError.new("there is no recipe for given key")
-    end
   end
 end
