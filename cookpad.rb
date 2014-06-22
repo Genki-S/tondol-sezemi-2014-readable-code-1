@@ -7,8 +7,9 @@ if ARGV.size == 0
   puts "オムライス"
 else
   # spec3-
-  # 入力が1行のレシピのみを含むと仮定する
   filename = ARGV.shift
-  recipe = File.read(filename).chomp
-  puts recipe
+  recipe = File.read(filename)
+  recipe.each_line {|line|
+    puts line
+  }
 end
