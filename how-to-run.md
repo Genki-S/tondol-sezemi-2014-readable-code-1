@@ -10,5 +10,16 @@ spec1
 ----
 
 ```sh
-ruby cookpad.rb
+$ ruby cookpad.rb
+オムライス
+```
+
+spec3
+----
+
+```sh
+$ cat recipe-data.txt
+オムライス
+$ ruby cookpad.rb recipe-data.txt
+オムライス
 ```
