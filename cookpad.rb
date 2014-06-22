@@ -19,10 +19,10 @@ class RecipeData
   end
 
   def self.load(str)
-  	recipes = str.each_line.map {|line|
+    recipes = str.each_line.map {|line|
       Recipe.load(line)
-  	}
-  	RecipeData.new(recipes)
+    }
+    RecipeData.new(recipes)
   end
 
   def has_recipe_for_id?(id)
@@ -43,7 +43,7 @@ else
   recipe_data = RecipeData.load(str)
 
   if ARGV.empty?
-  	# spec3-5
+    # spec3-5
     recipes_data.recipes.each_with_index {|recipe, id|
       puts "#{id}: #{recipe.name}"
     }
@@ -57,6 +57,6 @@ else
       puts "#{id}: #{recipe.name}"
     else
       raise ArgumentError.new("there is no recipe for given key")
-   	end
+    end
   end
 end
