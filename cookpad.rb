@@ -1,6 +1,14 @@
 #!/usr/bin/env ruby
 #-*- coding: utf-8 -*-
 
+class User
+  def initialize(name)
+    @name = name
+  end
+
+  attr_reader :name
+end
+
 class Recipe
   def initialize(name)
     @name = name
@@ -38,24 +46,32 @@ if ARGV.size == 0
   puts "オムライス"
 else
   # spec3-
-  filename = ARGV.shift
+  user_name, filename, recipe_id_str = ARGV
+
+  user = User.new(user_name)
+  puts "ユーザー名: #{user.name}"
+
   str = File.read(filename)
   recipe_data = RecipeData.load(str)
 
-  if ARGV.empty?
+  recipe_id = unless recipe_id_str.nil?
+                recipe_id_str.to_i
+              else
+                nil
+              end
+  if recipe_id.nil?
     # spec3-5
     recipe_data.recipes.each_with_index {|recipe, id|
       puts "#{id}: #{recipe.name}"
     }
   else
     # spec6-
-    # 与えられたキーが整数に変換できなかったり，
-    # 対応するレシピが存在しなければ例外を発生させる
-    id = Integer(ARGV.shift)
-    if recipe_data.has_recipe_for_id?(id)
-      recipe = recipe_data.recipes[id]
-      puts "#{id}: #{recipe.name}"
+    if recipe_data.has_recipe_for_id?(recipe_id)
+      recipe = recipe_data.recipes[recipe_id]
+      puts "#{recipe_id}: #{recipe.name}"
     else
+      # 与えられたキーが整数に変換できなかったり，
+      # 対応するレシピが存在しなければ例外を発生させる
       raise ArgumentError.new("there is no recipe for given key")
     end
   end

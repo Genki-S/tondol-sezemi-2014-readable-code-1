@@ -60,3 +60,22 @@ spec7
 $ ruby cookpad.rb recipe-data.txt 1
 寿司 http://cookpad.com/recipe/1858524
 ```
+
+spec8
+----
+
+入力ファイルはspec7と同様。
+
+```sh
+$ ruby cookpad.rb Genki-S recipe-data.txt
+ユーザー名: Genki-S
+0: カレーライス http://cookpad.com/recipe/1380278
+1: 寿司 http://cookpad.com/recipe/1858524
+2: 焼肉 http://cookpad.com/recipe/2194829
+```
+
+```sh
+$ ruby cookpad.rb Genki-S recipe-data.txt 1
+ユーザー名: Genki-S
+1: 寿司 http://cookpad.com/recipe/1858524
+```
