@@ -23,3 +23,17 @@ $ cat recipe-data.txt
 $ ruby cookpad.rb recipe-data.txt
 オムライス
 ```
+
+spec4
+----
+
+実行方法はspec3と同様。
+
+入力ファイルの書式: 各レシピを改行文字区切りで記述する。
+
+```sh
+cat recipe-data.txt
+カレーライス
+寿司
+焼肉
+```
